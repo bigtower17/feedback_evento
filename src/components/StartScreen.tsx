@@ -11,8 +11,8 @@ interface StartScreenProps {
 
 const StartScreen: React.FC<StartScreenProps> = ({
   onStartQuiz,
-  headingText = "Benvenuto al Test del Gommista!",
-  buttonText = "Inizia il Test",
+  headingText = "Feedback Evento",
+  buttonText = "Inizia il Feedback",
   loading = false,
   customStyles = "",
 }) => {
@@ -20,7 +20,7 @@ const StartScreen: React.FC<StartScreenProps> = ({
 
   const handleStartClick = () => {
     setIsLoading(true);
-    onStartQuiz("quizId123");
+    onStartQuiz("feedbackId123");
   };
 
   return (
@@ -36,11 +36,14 @@ const StartScreen: React.FC<StartScreenProps> = ({
         }}
       />
       <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-        <span className="block">Benvenuto al</span>
-        <span className="block">Test del Gommista</span>
+        <span className="block">Conta e Cammina</span>
+        <span className="block text-2xl mt-2">raccolta feedback</span>
       </h1>
       <p className="text-gray-600 mb-6">
-        Per iniziare il quiz, ti chiediamo di inserire alcune informazioni per personalizzare la tua esperienza.
+        Aiutaci a migliorare! Condividi la tua esperienza e le tue opinioni sull'evento a cui hai partecipato.
+      </p>
+      <p className="text-gray-500 text-sm mb-6">
+        Il questionario richiede solo 2-3 minuti per essere completato.
       </p>
       <button
         onClick={handleStartClick}

@@ -1,6 +1,6 @@
 // Header.tsx
 import React from 'react';
-import logo from '../assets/images/logo.svg';
+import logo from '../assets/images/Senza titolo-2.png';
 import { HomeIcon } from '@heroicons/react/24/outline';
 
 interface HeaderProps {

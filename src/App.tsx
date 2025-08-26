@@ -19,17 +19,16 @@ interface RegistrationData {
   ragionesociale: string;
   email: string;
   phone: string;
-  consent: boolean; // Add consent field
+  consent: boolean;
 }
 
-type Screen = 'start' | 'registration' | 'quiz' | 'results';
+type Screen = 'start' | 'registration' | 'feedback' | 'results';
 
 const App: React.FC = () => {
   const [screen, setScreen] = useState<Screen>('start');
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [feedbackResponses, setFeedbackResponses] = useState<{question: string, rating: number}[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [hasSaved, setHasSaved] = useState(false);
@@ -42,20 +41,21 @@ const App: React.FC = () => {
   };
 
   const handleRegister = (data: RegistrationData) => {
-    setRegistrationData(data);
-    setScreen('quiz');
+    setRegistrationData({
+      name: data.name,
+      ragionesociale: '',
+      email: '',
+      phone: '',
+      consent: false
+    });
+    setScreen('feedback');
   };
 
-  const handleAnswer = (points: number, answerText: string) => {
-    setScore(prevScore => {
-      const newScore = prevScore + points;
-      console.log('Score updated:', newScore);
-      return newScore;
-    });
-    setAnswers(prevAnswers => {
-      const newAnswers = [...prevAnswers, answerText];
-      console.log('Answers updated:', newAnswers);
-      return newAnswers;
+  const handleFeedback = (questionText: string, rating: number) => {
+    setFeedbackResponses(prevResponses => {
+      const newResponses = [...prevResponses, {question: questionText, rating}];
+      console.log('Feedback responses updated:', newResponses);
+      return newResponses;
     });
     setCurrentQuestionIndex(prevIndex => {
       const newIndex = prevIndex + 1;
@@ -68,8 +68,7 @@ const App: React.FC = () => {
     setScreen('start');
     setRegistrationData(null);
     setCurrentQuestionIndex(0);
-    setScore(0);
-    setAnswers([]);
+    setFeedbackResponses([]);
     setIsSaving(false);
     setSaveError(null);
     setHasSaved(false);
@@ -99,8 +98,8 @@ const App: React.FC = () => {
       saveTriggeredRef.current = false;
       return;
     }
-    if (!registrationData.name || !registrationData.email) {
-      setSaveError('Name and email are required.');
+    if (!registrationData.name) {
+      setSaveError('Name is required.');
       saveTriggeredRef.current = false;
       return;
     }
@@ -121,24 +120,18 @@ const App: React.FC = () => {
       ragionesociale: registrationData.ragionesociale,
       email: registrationData.email,
       phone: registrationData.phone,
-      consent: registrationData.consent, // Include consent in the data
-      score,
-      answers,
+      consent: registrationData.consent,
+      feedbackResponses,
     };
     const dataString = JSON.stringify(data);
     console.log('Data to send:', dataString);
 
-    const encoder = new TextEncoder();
-    const byteLength = encoder.encode(dataString).length;
-
     try {
-      const response = await axios.post(
-        'https://script.google.com/macros/s/AKfycbwKIi3wiBq_to41k3R4Oj5BhNBjMXu3bgC9W3XOkZxE9XjWSYrGxUmMmzojjjj7Gvbd/exec',
-        dataString,
+      const response = await axios.get(
+        'https://script.google.com/macros/s/AKfycbxpoLTYK6MpAJEPXQZ0_v39z477f7551h6RkDsvRhMh1Ps5ObGqBwv4Ob0G5Y_Avp1g1A/exec',
         {
-          headers: {
-            'Content-Type': 'text/plain',
-            'Content-Length': byteLength.toString(),
+          params: {
+            data: dataString
           },
           signal: controller.signal,
         }
@@ -174,18 +167,18 @@ const App: React.FC = () => {
       setIsSaving(false);
       abortControllerRef.current = null;
     }
-  }, [registrationData, score, answers, isSaving, hasSaved]);
+  }, [registrationData, feedbackResponses, isSaving, hasSaved]);
 
   useEffect(() => {
     if (
-      screen === 'quiz' &&
+      screen === 'feedback' &&
       currentQuestionIndex >= questions.length &&
       registrationData &&
       !saveTriggeredRef.current &&
       !isSaving &&
       !hasSaved
     ) {
-      console.log('Quiz completed, triggering save via useEffect');
+      console.log('Feedback completed, triggering save via useEffect');
       saveTriggeredRef.current = true;
       saveToGoogleSheets();
       setScreen('results');
@@ -211,16 +204,17 @@ const App: React.FC = () => {
             onGoBack={handleGoBackFromRegistration}
           />
         )}
-        {screen === 'quiz' && currentQuestionIndex < questions.length && (
+        {screen === 'feedback' && currentQuestionIndex < questions.length && (
           <QuestionCard
             question={questions[currentQuestionIndex]}
-            onAnswer={handleAnswer}
+            onFeedback={handleFeedback}
+            currentIndex={currentQuestionIndex}
+            total={questions.length}
           />
         )}
         {screen === 'results' && (
           <div className="w-full max-w-md">
             <ResultScreen
-              score={score}
               isSaving={isSaving}
               saveError={saveError}
               onRetry={saveToGoogleSheets}

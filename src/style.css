@@ -53,8 +53,8 @@ a.bg-custom-green {
 
 .registration-screen input:focus {
   outline: none;
-  border-color: #5EB19B;
-  box-shadow: 0 0 0 3px rgba(94, 177, 155, 0.2);
+  border-color: #7A1E3A;
+  box-shadow: 0 0 0 3px rgba(122, 30, 58, 0.2);
 }
 
 .registration-screen label {
@@ -80,7 +80,7 @@ header {
 }
 
 button {
-  background-color: #5EB19B;
+  background-color: #7A1E3A;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -90,7 +90,7 @@ button {
 }
 
 button:hover {
-  background-color: #4a9d87;
+  background-color: #5A1529;
 }
 
 .question-card {
@@ -138,12 +138,12 @@ footer {
 }
 
 .text-container::-webkit-scrollbar-thumb {
-  background: #5EB19B;
+  background: #7A1E3A;
   border-radius: 4px;
 }
 
 .text-container::-webkit-scrollbar-thumb:hover {
-  background: #4a9d87;
+  background: #5A1529;
 }
 
 /* Stile per il pulsante con animazione pulse */
