@@ -5,7 +5,6 @@ import QuestionCard from './components/QuestionCard';
 import ResultScreen from './components/ResultScreen';
 import RegistrationScreen from './components/RegistrationScreen';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import { questions } from './data/questions';
 import './style.css';
 

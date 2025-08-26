@@ -1,8 +1,8 @@
 {
-  "name": "gommista-quiz",
+  "name": "feedback-evento",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://officinaincloud.it/quiz",
+  "homepage": "",
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@testing-library/dom": "^10.4.0",
@@ -44,5 +44,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "autoprefixer": "^10.4.21",
+    "tailwindcss": "^4.1.12"
   }
 }

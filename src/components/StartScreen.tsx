@@ -27,14 +27,6 @@ const StartScreen: React.FC<StartScreenProps> = ({
     <div
       className={`relative text-center animate-fadeIn max-w-md w-full mt-60 md:mt-24 ${customStyles}`}
     >
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${logo})`,
-          opacity: 0.05,
-          zIndex: -1,
-        }}
-      />
       <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
         <span className="block">Conta e Cammina</span>
         <span className="block text-2xl mt-2">raccolta feedback</span>
