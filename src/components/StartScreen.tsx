@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from '../assets/images/logo.svg';
 
 interface StartScreenProps {
   onStartQuiz: (quizId?: string) => void;
