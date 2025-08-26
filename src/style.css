@@ -1,0 +1,164 @@
+.app-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Migliora lo scrolling per ResultScreen */
+.text-container {
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+/* Stile per il pulsante di ResultScreen */
+a.bg-custom-green {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* Stile per StartScreen */
+.start-screen {
+  position: relative;
+  max-width: 100%;
+}
+
+.start-screen h1 {
+  font-size: 24px;
+}
+
+/* Stile per l'immagine di sfondo in StartScreen */
+.background-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+/* Stile per RegistrationScreen */
+.registration-screen input {
+  border: 1px solid #d1d5db;
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.registration-screen input:focus {
+  outline: none;
+  border-color: #5EB19B;
+  box-shadow: 0 0 0 3px rgba(94, 177, 155, 0.2);
+}
+
+.registration-screen label {
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Header Styling */
+header {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.logo-img {
+  max-width: 200px;
+  height: auto;
+}
+
+button {
+  background-color: #5EB19B;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #4a9d87;
+}
+
+.question-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: 90%;
+}
+
+.result-screen img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Assicura che il footer non copra il contenuto */
+footer {
+  z-index: 10;
+}
+
+/* Animazione fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Stile per lo scrollbar personalizzato */
+.text-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.text-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.text-container::-webkit-scrollbar-thumb {
+  background: #5EB19B;
+  border-radius: 4px;
+}
+
+.text-container::-webkit-scrollbar-thumb:hover {
+  background: #4a9d87;
+}
+
+/* Stile per il pulsante con animazione pulse */
+.hover\:pulse:hover {
+  animation: pulse 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+} 
