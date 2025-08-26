@@ -14,7 +14,7 @@ export const questions = [
       { text: '📓 Controllo una scheda scritta', points: 2 },
       { text: '🧠 Ho tutto registrato nello storico digitale', points: 3 },
     ],
-  },
+  }, 
   {
     questionText: 'Come gestisci le scorte in magazzino?',
     answers: [
