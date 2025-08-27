@@ -25,7 +25,7 @@ export const questions: FeedbackQuestion[] = [
     category: 'Relatori'
   },
   {
-    questionText: 'Il networking e le opportunità di interazione sono state soddisfacenti',
+    questionText: 'Sei stato soddisfatto delle occasioni di incontro e confronto con gli altri partecipanti?',
     category: 'Networking'
   },
   {
